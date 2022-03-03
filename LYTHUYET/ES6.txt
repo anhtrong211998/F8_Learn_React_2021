@@ -43,3 +43,35 @@
 // 	}
 
 //	console.log(course.getName);
+
+---------------------------------------------------------
+--------------------------------------------------------------
+2. Enhanced object literals
+// 	1. Định nghĩa key: value cho cho object
+//	2. Định nghĩa method cho object
+
+var name = 'JavaScript';
+var price = 1000;
+
+//// key và value giống nhau, thì có thể viết ngắn gọn
+//// có thể bỏ :function() thay bằng () khi định nghĩa method cho ngắn gọn
+//	var course = {
+//		name,
+//		price,
+//		getName(){
+//			return name;
+//		}
+//	}
+
+//	3. Định nghĩa key cho object dưới dạng biến
+// áp dụng cho trường hợp tùy vào giá trị của biến mà set key cho phù hợp
+// cách này không sử dụng thường xuyên nhưng vẫn cần ghi nhớ
+var fieldName = 'name';
+var fieldPrice = 'price';
+
+const course = {
+	[fieldName]:'JavaScript',
+	[fieldPrice]: 1000
+};
+
+console.log(course);
