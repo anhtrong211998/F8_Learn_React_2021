@@ -1,0 +1,45 @@
+----------------------------------------------------------
+1. ARROW FUNCTION
+********app.js
+
+
+//// declaration function
+// 	function logger(log){
+// 		console.log(log);
+// 	}
+
+//// 	experssion function
+// 	const logger = function(log){
+// 		console.log(log);
+// 	}
+
+//// 	anonymous function/ arrow function
+// 	const logger = (log) => {
+// 		console.log(log);
+// 	}
+
+//// cách viết ngắn gọn hơn: khi đằng sau dấu => không có dấu {} 
+//// thì nó hiểu là return
+// Ví dụ:
+// 	const sum = (a,b) => a+b;
+// 	console.log(sum(2,2));
+
+//// nếu muốn return ra một object theo cách viết ngắn gọn:
+
+// 	const sum = (a,b) => ({
+//	 	a:a,
+//	 	b:b
+// 	})
+
+// 	logger('Message......');
+
+//// arrow function không có context => không hiểu được this.
+/// không tin cứ thử đi xem :))
+// 	const course = {
+// 		name: 'JavaScript basic!',
+//		getName: function(){
+// 		 	return this; // context
+// 	 	}
+// 	}
+
+//	console.log(course.getName);
