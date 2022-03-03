@@ -75,3 +75,67 @@ const course = {
 };
 
 console.log(course);
+
+----------------------------------------------------------------------
+------------------------------------------------------------------------
+3. Destructuring, Rest
+var array = ['JavaScript', 'PHP', 'Ruby'];
+
+//// giả sử muốn lấy a,b,c tương ứng với từng phần tử trong mảng
+//// cách thông thường
+//	var a = array[0];
+//	var b = array[1];
+//	var c = array[2];
+
+//// desctructuring
+var [a,b,c] = array;
+//	console.log(a,b,c);
+
+//// giả sử chỉ muốn lấy a và c
+//	var [a,,c] = array;
+//	console.log(a,c);
+
+//// giả sử chỉ muốn lấy a, thì sử dụng toán tử rest 
+//	var [a,...rest] = array; // rest chỉ là tên biến, đặt là gì cững được
+//	console.log(a);
+//	console.log(rest);
+
+//// với object
+var course = {
+	name: 'JavaScript',
+	price: 1000,
+	image: 'image-address',
+	//	children: {
+	//		name: 'ReactJS'
+	//	}
+}
+
+//// giả sử muốn lấy ra từng field trong object
+//	var {name, price, image} = course;
+//	console.log(name,price, image);
+
+//// giả sử chỉ muốn lấy field name của object
+//	var {name, ...rest} = course;
+//	console.log(name);
+//	console.log(rest);
+
+//// giả sử lấy name của children
+//	var {name: parrentName, children: {name: childrenName} } = course;
+//	console.log(parrentName);
+//	console.log(childrenName);
+
+//// giả sử muốn lấy ra một field không có trong object
+
+//	var {name, description = 'default value'} = course;
+//	console.log(name);
+//	console.log(description);
+
+//// DEMO cho REST parametter
+//	function logger(...params){
+//		console.log(params);	
+//	}
+
+//	logger(1,2,3,4,5,6,7,8);
+
+===> Khi toán tử ba chấm (...) kết hợp với destructuring hoặc là
+parametter thì nó là REST
