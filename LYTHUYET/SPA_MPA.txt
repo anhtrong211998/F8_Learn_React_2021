@@ -1,0 +1,23 @@
+# Sự khác biệt
+
+### SPA: (Single-Page Application)
+- Được cho là cách tiếp cận hiện đại hơn
+- Không yêu cầu tải lại trang trong quá trình sử dụng
+- Về tốc độ:
++ Nhanh hơn khi sử dụng do:
+*** Phần lơn tài nguyên được tải trong lần đầu
+*** Trang chỉ tải thêm dữ liệu mới khi cần.
+- Về sự bóc tách:
++ SPA có phần front-end riêng biệt, có thể tách đội BE và FE
+- Phụ thuộc hoàn toàn vào JavaScript
+- Dễ dàng tái sử dụng code (chia ra các component)
+
+### MPA (Multi-Page Application)
+- Là cách tiếp cận cổ điển hơn
+- Yêu cầu tải lại trang trong quá trình sử dụng
+- Về tốc độ:
++ Chậm hơn do luôn tải lại toàn bộ trang khi truy cập và chuyển hướng
+- Về sự bóc tách: MPA front-end và back-end phụ thuộc nhiều vào nhau,
+được đặt trên cùng một dự án.
+- Có thể không cần JavaScript
+
