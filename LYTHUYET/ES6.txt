@@ -214,3 +214,16 @@ Ví dụ:
 //	}
 
 //	logger(...array);
+
+--------------------------------------------------------------------
+-------------------------------------------------------------------
+5. JSModule
++ bóc tách ra một nơi riêng (một file riêng) thì được hiểu
+là modules hóa
+
++ import: nạp vào (những cái gì export đều import được),
+và không thể import ngoài phạm vi module 
+(chỉ khi là module hoặc nằm trong module thì mới import được)
+
++ export: tách ra (phải export thì những thằng khác mới xử dụng được),
+Một module chỉ export default một cái
