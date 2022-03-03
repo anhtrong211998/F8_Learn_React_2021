@@ -138,4 +138,79 @@ var course = {
 //	logger(1,2,3,4,5,6,7,8);
 
 ===> Khi toán tử ba chấm (...) kết hợp với destructuring hoặc là
-parametter thì nó là REST
+parametter (tham số của method) thì nó là REST
+Note: REST chỉ lấy phần còn lại của đối tượng hoặc array
+Ví dụ:
+//// lấy phần còn lại của mảng
+//	function logger(a,b,...rest){
+//		console.log(a);
+//		console.log(b);
+//		console.log(rest);
+//	}
+//	logger([1,2,3,4]);
+
+//// lấy phần còn lại của đối tượng
+//	function logger({name, price, ...rest}){
+//		console.log(name);
+//		console.log(price);
+//		console.log(rest);
+//	}
+//	logger({
+//		name: 'JavaScript',
+//		price: 1000,
+//		description: 'Description content'
+//	})
+
+-------------------------------------------------------------------
+------------------------------------------------------------------
+4. SPREAD OPERATOR
++ Nối 2 mảng hay 2 đối tượng, hoặc nối thêm field của object
+Ví dụ:
+//	var array1 = ['JavaScript','Ruby','PHP'];
+//	var array2 = ['ReactJS','Dart'];
+
+//// giả sử cần nối 2 mảng array2 và array1
+//	var array3 = [...array2,...array1]; 
+//	console.log(array3);
+
+//// giả sử cần nối 2 object
+//	var object1 = {
+		name: 'JavaScript'
+//	};
+
+//	var object2 = {
+//		price: 1000
+//	};
+
+//	 var object3 = {
+//		...object1,
+//		...object2
+//	};
+
+//	console.log(object3);
+
+
+///// Ví dụ cho cần call api từ nhiều trang
+// var defaultConfig = {
+//		api: 'https://domain-trang-khoa-hoc',
+//		apiVersion: 'v1',
+//		other: 'other'
+//	};
+
+//	var exerciseConfig = {
+//		defaultConfig,
+//		api: 'https://domain-trang-bai-tap'
+//	};
+//	console.log(exerciseConfig);
+Note: khi toán tử 3 chấm làm nhiệm vụ là đối số truyền vào 
+thì nó là Spread operator
+Ví dụ:
+//	var array = ['JavaScript', 'PHP', 'Ruby', 'React'];
+
+//	function logger(...rest){
+//		for(var i = 0; i < rest.length; i++){
+//			console.log(rest[i]);
+//		}
+//	}
+
+//	logger(...array);
