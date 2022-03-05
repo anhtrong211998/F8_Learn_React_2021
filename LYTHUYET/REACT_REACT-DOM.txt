@@ -39,3 +39,27 @@
 	</script>
   </body>
 </html>
+
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+2. Cách thêm React vào Website
+-- GitHub, NPMJS, UNPKG
+-- Add React to website
+-- 3 Oficial docs: reactjs.org
+-- https://unpkg.com/react@17.0.2/cjs/react.production.min.js
+
+-VD: 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React DOM</title>
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  </head>
+  <body>
+	<h1 id ="heading">hello world</h1>
+	<div id="root"></div>
+	<script>
+		console.log(React);
+	</script>
+  </body>
+</html>
