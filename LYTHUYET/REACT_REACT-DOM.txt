@@ -140,3 +140,49 @@
 	</script>
   </body>
 </html>
+
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+4. React-DOM
+- là cầu nối giữa react và dom, khi react tạo được element, 
+React-DOM sẽ giúp gán nó vào DOM
+
+-VD:
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React DOM</title>
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  </head>
+  <body>
+	<div id='root'></div>
+	<script>
+		//// React Element
+		const postItem = React.createElement(
+			'div',
+			{
+				className: 'post-item'
+			},
+			React.createElement(
+				'h2',
+				{
+					title:'Hello world'
+				},
+				'Hello world!'
+			),
+			React.createElement(
+				'p',
+				{},
+				'Học Reactjs từ cơ bản'
+			)
+		)
+		
+		//// get root element
+		const root = document.getElementById('root');
+		
+		//// React-DOM -> render UI
+		ReactDOM.render(postItem,root);
+	</script>
+  </body>
+</html>
