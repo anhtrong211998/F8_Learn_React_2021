@@ -63,3 +63,80 @@
 	</script>
   </body>
 </html>
+
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+3. React.createElement()
+-- React element là thành phần nhỏ nhất của React
+-- DOM element có thành phần nhỏ nhất là node
+
+-VD: Basic
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React DOM</title>
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  </head>
+  <body>
+	<script>
+		//// DOM
+		const h1DOM = document.createElement('h1');
+		h1DOM.title = 'Hello';
+		h1DOM.className = 'heading';
+		h1DOM.innerText = 'Hello world!';
+		document.body.appendChild(h1DOM);
+		
+		//// React
+		//// Cú pháp: React.createElement(type,props,children,...children[n]);
+		const h1React = React.createElement('h1', {
+			title: 'Hello',
+			className: 'heading'
+		},'Hello world!');
+		
+		console.dir(h1DOM);
+		console.log(h1React);
+	</script>
+  </body>
+</html>
+
+-VD: ADVANCED
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React DOM</title>
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  </head>
+  <body>
+	<script>
+		//// DOM
+		const ulDOM = document.createElement('ul');
+		ulDOM.id = 'ul-id';
+		ulDOM.style = 'color: red; font-size: 30px';
+		
+		const liDOM1 = document.createElement('li');
+		liDOM1.innerText = 'JavaScript';
+		liDOM1.id = 'li-1';
+		
+		const liDOM2 = document.createElement('li');
+		liDOM2.innerText = 'ReactJS';
+		
+		ulDOM.appendChild(liDOM1);
+		ulDOM.appendChild(liDOM2);
+		document.body.appendChild(h1DOM);
+		
+		//// React
+		//// Cú pháp: React.createElement(type,props,children,...children[n]);
+		const ulReact = React.createElement(
+			'ul', 
+			{
+				id: 'ul-id',
+				style: 'color: red; font-size: 30px'
+			},
+			React.createElement('li', {id: 'li-1'}, 'JavaScript'),
+			React.createElement('li', null, 'ReactJS')
+		);
+		
+		console.dir(ulReact);
+	</script>
+  </body>
+</html>
