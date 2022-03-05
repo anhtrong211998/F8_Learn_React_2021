@@ -1,0 +1,41 @@
+--------------------------------------------------------
+1. document.createElement()
+- Tạo một element 
+
+-VD: 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React DOM</title>
+  </head>
+  <body>
+	<!--
+		1. document.createElement()
+		2. document.body.appendChild()
+		3. console.dir() => thể hiện dưới dạng một đối tượng
+		4. innerText, id, className, style
+	-->
+	<!--<h1 id ="heading">hello world</h1>-->
+	<div id="root"></div>
+	<script>
+		//const h1 = document.querySelector('#heading')
+		//console.dir(h1)
+		
+		//// tự tạo element như sau
+		const root = document.getElementById('root');
+		const h1 = document.createElement('h1');
+		h1.innerText = 'hello world';
+		h1.id = 'heading';
+		h1.className = 'test class-2';
+		//// define style cho element
+		//h1.style = 'color: green; font-size:20px';
+		Object.assign(h1.style, {
+			color: 'blue',
+			backgroundColor: '#333'
+		});
+		//document.body.appendChild(h1);
+		root.appendChild(h1);
+		console.dir(h1);
+	</script>
+  </body>
+</html>
