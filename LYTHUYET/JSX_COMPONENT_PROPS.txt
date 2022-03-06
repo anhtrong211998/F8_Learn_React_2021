@@ -61,8 +61,8 @@ const ul = React.createElement(
 
 		const ul = <ul className="courses-list">
 			<li style={{color:'red'}}>JavaScript</li>
-			{courses.map(course => 
-				<li>{course.name}</li>
+			{courses.map(course,index => 
+				<li key={index}>{course.name}</li>
 			)}
 		</ul>
 		
@@ -70,3 +70,40 @@ const ul = React.createElement(
 	</script>
   </body>
 </html>
+
+Note: JSX không hỗ trợ render 2 element cùng cấp, bắt buộc phải có 
+một wrapper. Lý do:
+VD:
+---đây là 2 element cùng cấp h1 và h2, cú pháp này sai khi render
+const jsx = (
+	<h1>Heading 1</h1>
+	<h2>Heading 2</h2>
+)
+
+---ta thử convert nó sang react:
+const jsx = (
+	React.createElement('h1',null,'Heading 1')
+	React.createElement('h2',null,'Heading 2')
+)
+
+=> ta thấy ngay ta không thể viết như thế này
+Solution: tạo một wrap để chứa 2 element này
+
+VD:
+const jsx = (
+	<React.Fragment>
+		<h1>Heading 1</h1>
+		<h2>Heading 2</h2>
+	</React.Fragment>
+)
+
+---ta thử convert nó sang react:
+const jsx = React.createElement(
+		React.Fragment,
+		null,
+		React.createElement('h1',null,'Heading 1'),
+		React.createElement('h2',null,'Heading 2')
+	)
+=> cấu trúc hoàn toàn quen thuộc =))
+ReactDOM.render(jsx,root);
+
