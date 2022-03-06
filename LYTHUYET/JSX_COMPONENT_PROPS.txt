@@ -1,0 +1,72 @@
+---------------------------------------------------------------------
+1. JSX là gì:
+- Là javascript XML
+- Gần giống với HTML, giúp ta không cần phải dử dụng createElement 
+để code giao diện, vì sử dụng createElement thì rất khó
+- Cần có JavaScript và Babel (chuyển đổi về ES5) để dùng JSX
+- có thể viết đan xen javascript
+- Demo online: https://bit.ly/2VOIMN7
+
+- VD1:
+const reactCourse = 'REactJs Basic';
+
+const ul = <ul className="courses-list">
+	<li style={{color:'red'}}>JavaScript</li>
+	<li>{reactCourse}</li>
+</ul>
+
+
+---Không sử dụng JSX ta phải viết:
+const reactCourse = 'React Basic';
+
+const ul = React.createElement(
+			'ul',
+			{className:'courses-list'},
+			React.createElement(
+				'li',
+				{
+					style: {
+						color:'red'
+					}
+				},
+				'JavaScript'
+			),
+			React.createElement('li',null, reactCourse)
+		);
+		
+- VD2:
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React DOM</title>
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+	<div id='root'></div>
+	<script type="text/babel">
+		const reactCourse = 'REactJs Basic';
+		const courses = [
+			{
+				name: 'HTML, CSS'
+			},
+			{
+				name: 'Responsive web design'
+			},
+			{
+				name: 'REactJs'
+			}
+		]
+
+		const ul = <ul className="courses-list">
+			<li style={{color:'red'}}>JavaScript</li>
+			{courses.map(course => 
+				<li>{course.name}</li>
+			)}
+		</ul>
+		
+		ReactDOM.render(ul,document.getElementById('root'));
+	</script>
+  </body>
+</html>
