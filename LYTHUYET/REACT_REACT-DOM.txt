@@ -186,3 +186,26 @@ React-DOM sẽ giúp gán nó vào DOM
 	</script>
   </body>
 </html>
+
+------------------BÀI TẬP-----------------------------
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React DOM</title>
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  </head>
+  <body>
+	<div id='root'></div>
+	<script>
+		const ul = React.createElement(
+			'ul',
+			null,
+			React.createElement('li',null,'JavaScript'),
+			React.createElement('li',null,'REactJs')
+		);
+		
+		ReactDOM.render(ul,document.getElementById('root'));
+	</script>
+  </body>
+</html>
