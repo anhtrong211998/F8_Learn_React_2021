@@ -205,3 +205,68 @@ ReactDOM.render(jsx,root);
 	</script>
   </body>
 </html>
+
+---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+3. Props là gì? Dùng Props khi nào?
+- Là một object chứa các thuộc tính mô tả cho React Element
+- React Element:
+++ Sử dụng props giống như với attribute của thẻ HTML
+++ 2 props (attribute) class, for(trong thẻ lable,...) => className, htmlFor
+++ Phải tuân theo quy tắc có sẵn
+
+- React component:
+++ Sử dụng props như đối số của component
+++ Tự do đặt tên props
+	- Đặt theo camelCase
+	- Có thể bao gồm dấu gạch ngang
+- Chú ý:
+++ Prop "key" là props đặc biệt
+++ Props cơ bản là đối số của component
+=> Props có thể là bất cứ kiểu dữ liệu gì
+++ Sử dụng Destructuring
+
+-- VD
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React DOM</title>
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+	<div id='root'></div>
+	<script type="text/babel">
+		//// PostItem.js
+		function PostItem(props){
+			return (
+				<div className="post-item">
+					<img src={props.image}
+						 alt={props.alt} />
+					<h2 className="post-title">{props.title}</div>
+					<p className="post-desc">{props.description}</p>
+					<p className="post-published">{props.publishedAt}</p>
+				</div>
+			)
+		}
+		//// App.js
+		function App(){
+			return (
+				<div id="wrapper">
+					<PostItem 
+						image:"https://gamek.mediacdn.vn/133514250583805952/2021/10/10/ty3-1633855940616616044131.jpg"
+						alt:"Waifu"
+						title:"C#(.Net)"
+						description: "Bạn có kiến thức ngôn ngữ c#"
+						publishedAt: "Một ngày trước - 5 phút"
+					/>
+				</div>
+			)
+		}
+		
+		//// index.js
+		ReactDOM.render(<App />,document.getElementById('root'));
+	</script>
+  </body>
+</html>
