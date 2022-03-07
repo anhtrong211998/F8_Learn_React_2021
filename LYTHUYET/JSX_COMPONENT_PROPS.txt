@@ -270,3 +270,238 @@ ReactDOM.render(jsx,root);
 	</script>
   </body>
 </html>
+
+-------------------------------------------------------------------------
+------------------------------------------------------------------------
+4. Quy ước đặt tên:
+- Viết hoa ký tự đầu
+- VD1: Chọn component trong 1 object
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React DOM</title>
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+	<div id='root'></div>
+	<script type="text/babel">
+		
+		const Form = {
+			Input(){
+				return <input />
+			}
+			
+			Checkbox(){
+				return <input type="checkbox" />
+			}
+		}
+		
+		//// App.js
+		function App(){
+			const type="Input";
+			
+			const Component = Form[type];
+			
+			return (
+				<div id="wrapper">
+					<Component />
+				</div>
+			)
+		}
+		
+		//// index.js
+		ReactDOM.render(<App />,document.getElementById('root'));
+	</script>
+  </body>
+</html>
+
+- VD2:
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React DOM</title>
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+	<div id='root'></div>
+	<script type="text/babel">
+		function Button({title,href,onClick}){
+			let Component = 'button';
+			
+			if(href) {
+				Component = 'a';
+				props.href = href;
+			}
+			
+			if(onClick){
+				props.onClick=onClick;
+			}
+			return(
+				<Component {...props}>{title}</button>
+			)
+		}
+		
+		//// App.js
+		function App(){
+			return (
+				<div id="wrapper">
+					<Button 
+						title="click me!"
+						href="https://fullstack.edu.vn/"
+						onClick={() => console.log(Math.random())}
+					/>
+				</div>
+			)
+		}
+		
+		//// index.js
+		ReactDOM.render(<App />,document.getElementById('root'));
+	</script>
+  </body>
+</html>
+
+VD3: toán tử logic: boolean, null và underfine không được render
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React DOM</title>
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+	<div id='root'></div>
+	<script type="text/babel">
+		//// App.js
+		//// AND
+		function App(){
+		 let firstAccess = true
+			return (
+				<div id="wrapper">
+					{firstAccess &&<h1>Welcome to F8</h1> }
+				</div>
+			)
+		}
+		
+		//// OR
+		//fucntion App({title}){
+		//	return(
+		//		<div id="wrapper">
+		//			<h1>{title || 'Giá trị mặc định'}</h1>
+		//		</div>
+		//	)
+		//}
+		
+		//// index.js
+		ReactDOM.render(<App />,document.getElementById('root'));
+		//ReactDOM.render(<App title="Welcome back!"/>,document.getElementById('root'));
+	</script>
+  </body>
+</html>
+
+-------------------------------------------------------------------
+-----------------------------------------------------------------------------
+4. Children props? Render props?
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React DOM</title>
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+	<div id='root'></div>
+	<script type="text/babel">
+		//function Button({title,primary}){
+		//	console.log(primary); //true
+		//
+		//	return <button>{title}</button>
+		//}
+		
+		function Input({lable,...inputProps}){
+			return(
+				<div>
+					<lable>{lable}</lable>
+					input {...inputProps} />
+				</div>
+			)
+		}
+	
+		//// children props
+		function Button({children}){
+			return <button>{children}</button>
+		}
+	
+		//// App.js
+		function App(){
+			const title = "Hello world!"
+			return (
+				<div id="wrapper">
+					//<Button primary title={title} />
+					//<Input 
+					//	lable="Full name"
+					//	type="Text"
+					//	placeholder="Enter name..."
+					//	title="Đây là input"
+					//	onFocus={
+					//		() => {console.log(Math.random())}
+					//	}
+					///>
+					
+					<Button>Click me!</Button> // string literal
+					//<Button>{true && Click me!}</Button> // {expression}
+				</div>
+			)
+		}
+		
+		//// index.js
+		ReactDOM.render(<App />,document.getElementById('root'));
+	</script>
+  </body>
+</html>
+
+VD2: Render props
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React DOM</title>
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+	<div id='root'></div>
+	<script type="text/babel">
+		function List({data, children}){
+			return (
+				<ul>
+					//{data.map(item => <li key={item}>{item}</li>)}
+					{data.map((...props) => children(...props))}
+				</ul>
+			)
+		}
+	
+		//// App.js
+		function App(){
+			const cars = ['BMW','Honda','Mazda'];
+			
+			return (
+				<div id="wrapper">
+					//<List data={cars}/>
+					<List data={cars}>
+						{(item,index) => <li key={index}>{item}</li>}
+					</List>
+				</div>
+			)
+		}
+		
+		//// index.js
+		ReactDOM.render(<App />,document.getElementById('root'));
+	</script>
+  </body>
+</html>
