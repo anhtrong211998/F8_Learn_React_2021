@@ -1,0 +1,141 @@
+----------------------------------------------------------
+- giúp đơn giản hóa trạng thái dữ liệu lên giao diện người dùng, tức là
+dữ liệu thay đổi gì thì hiển thị dữ liệu đó
+
+- Khi nào thì sử dụng:
++ khi muốn giữ liệu thay đổi thì giao diện người dùng tự động được
+cập nhật lại (render lại)
+import {useState} form 'react'
+
+/// nhận đối số đầu vào: giá trị khởi tạo
+/// return ra một mảng có 2 phần tử: state, và method re-set State
+cú pháp: const [state,setState] = useState(initState);
+
+Note:
+- Component được re-render sau khi setState
+- initial state chỉ dùng cho lần đầu
+- set state với callback
+- initial state với callback
+- set state là thay thế state bằng giá trị mới
+
+- function component bản chất là function, đọc code từ trên xuống
+
+const orders = [100,200,300];
+
+function App(){
+	initial state với callback
+	const [counter, setConter] = useState(() => {
+		const total = orders.reduce((total, cur) => total + cur);
+		console.log(total);
+		return total;
+	});
+	
+	const handleIncrease = () =>{
+		setConter(counter + 1);
+	}
+	
+	/// set state với callback
+	
+	const handleIncreaseCallBack = () =>{
+		setState(prevState => prevState + 1);
+		setState(prevState => prevState + 1);
+		setState(prevState => prevState + 1);
+		setState(prevState => prevState + 1);
+	}
+	
+	console.log("re-render");
+	
+	return(
+		<div className="App" style={{padding:20}}>
+			<h1>{counter}</h1>
+			<button onClick={handleIncrease}>Increase</button>
+		</div>
+	)
+
+}
+
+--------------------------------------
+VD2: 
+const gifts = [
+	'CPU i9',
+	'RAM 32GB RGB',
+	'RGB Keyboard'
+]
+
+function App() {
+	const [gift, setGift] = useState();
+	
+	const randomGift = () => {
+		let index = Math.floor(Math.random() * gifts.length);
+		setGift(gifts[index]);
+	}
+	retrn (
+		<div style = {{padding: 32}}>
+			<h1>{gift || 'Chưa có phần thưởng'}</h1>
+			<button onClick={randomGift}>Lấy thưởng</button>
+		</div>
+	)
+}
+
+-----------------------------------------------------------
+VD3: two-binding
+
+// Response from API
+const courses = [
+	{
+		id: 1,
+		name: 'HTML, CSS'
+	},
+	{
+		id:2,
+		name:'JavaScript'
+	},
+	{
+		id:3,
+		name: 'ReactJS'
+	}
+]
+
+function App() {
+	const [checked, setChecked] = useState();
+	
+	const [checkbox, setCheckbox] = useState([]);
+
+	const handleCheck = (id) => {
+		setCheckbox(prevState => {
+			const isChecked = checkbox.includes(id);
+			if(isChecked){
+				return checkbox.filter(item => item !== id);
+			}else{
+				return [...prevState, id];
+			}
+		});
+	}
+
+	const handleSubmit = () => {
+		// call API
+		console.log({id: checkbox})
+	}
+
+	return(
+		<div style = {{padding: 32}}>
+			{courses.map(course => {
+				<div key={course.id}>
+					//<input 
+					//	type="radio"
+					//	checked={checkbox.includes(course.id)}
+					//	onChange = {() => setChecked(course.id)}
+					///>
+					
+					<input 
+						type="checkbox" 
+						checkbox = {checked === course.id}
+						onChange={() => handleCheck(course.id)}
+					/>
+					{course.name}
+				</div>
+			})}
+			<button onClick={handleSubmit}>Register</button>
+		</div>
+	)
+}
