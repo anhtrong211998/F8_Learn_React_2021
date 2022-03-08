@@ -1,0 +1,25 @@
+--------------------------------------------------------
+1. Hooks là gì
+- là các tính năng có sẵn, giúp function component có đầy đủ tính năng như class component
+- chỉ dùng cho function component
+- component đơn giản dễ hiểu:
++ không bị chia logic ra như method trong lifecycle của class Component
++ Không cần sử dụng this
+
+- Khi nào thì suer dụng Hooks:
++ Dự án mới => Hooks
++ Dự án cũ:
+ component mới => function component + hooks
+ component cũ => giữ nguyên, có thời gian tối ưu sau
++ Logic nghiệp vụ cần sử dụng các tính chất của OOP => class component
+
+- Các hooks:
++ useState,
++ useEffect
++ useLayoutEffect
++ useRef
++ useCallback
++ useMemo
++ useReducer
++ useContext
++ useDebugValue
