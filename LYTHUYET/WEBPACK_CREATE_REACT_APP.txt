@@ -1,0 +1,127 @@
+--------------------------------------------------------------------
+1. NodeJs là gì?
+- Là một javascript runtime => tạo ra một môi trường độc lập có thể 
+chạy javascript trên đó => không liên quan đến trình duyệt
+- Sử dụng chrome V8 JavaScript engine
+- Với FE: sử dụng nodeJs để tạo ra một máy chủ web
+
+
+--------------------------------------------------------------
+----------------------------------------------------------------
+2. WebPack
+B1: Khởi tạo dự án: tạo file package.json
+npm init	
+
+B2: Cài đặt webpack
+npm install webpack webpack-cli --save-dev
+
+B3: Cài đặt React và React-DOM
+npm install react react-dom --save
+
+B4: Cài đặt Babel
+npm install @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
+
+--Gồm: 
+babel-core: Chuyển đổi ES6 về ES5
+babel-loader: Cho phép chuyển các files Javascript sử dụng Babel & Webpack
+babel-preset-env: Cài đặt sẵn giúp bạn sử dụng Javascript mới nhất trên nhiều môi trường khác nhau (nhiều trình duyệt khác nhau). Gói này đơn giản là support truyển đổi ES6, ES7, ES8, ES… về ES5.
+babel-preset-react: Hỗ trợ chuyển đổi JSX về Javascript
+
+B5: Tạo index.html
+folder public/index.html
+
+B6: Tạo file index.js
+src/index.js
+
+import React from 'react' // nạp thư viện react
+import ReactDOM from 'react-dom' // nạp thư viện react-dom
+
+// Tạo component App
+function App() {
+    return (
+        <div>
+            <h1>Xin chào anh em F8!</h1>
+        </div>
+    )
+}
+
+// Render component App vào #root element
+ReactDOM.render(<App />, document.getElementById('root'))
+
+B7: Cấu hình webpack
+1. Cài đặt CSS-Loader và Style-Loader
+npm install css-loader style-loader --save-dev
+
+2. Tạo webpack.config.js
+
+const path = require("path");
+
+module.exports = {
+  entry: "./src/index.js", // Dẫn tới file index.js ta đã tạo
+  output: {
+    path: path.join(__dirname, "/build"), // Thư mục chứa file được build ra
+    filename: "bundle.js" // Tên file được build ra
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/, // Sẽ sử dụng babel-loader cho những file .js
+        exclude: /node_modules/, // Loại trừ thư mục node_modules
+        use: ["babel-loader"]
+      },
+      {
+        test: /\.css$/, // Sử dụng style-loader, css-loader cho file .css
+        use: ["style-loader", "css-loader"]
+      }
+    ]
+  },
+  // Chứa các plugins sẽ cài đặt trong tương lai
+  plugins: [
+  ]
+};
+
+3. Tạo file .babelrc
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+    ]
+}
+
+
+4. Thêm scripts cho dự án
+Tại package.json thêm nội dung sau:
+
+"scripts": {
+    ...
+    "start": "webpack --mode development --watch",
+    "build": "webpack --mode production"
+}
+
+5 cài đặt html-webpack-plugin
+npm install html-webpack-plugin --save-dev
+
+then add line code into webpack.config.js
+
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+and 
+// Chứa các plugins sẽ cài đặt trong tương lai
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./public/index.html"
+    })
+  ]
+  
+ 
+6. Cài đặt webpack-dev-server
+npm install webpack-dev-server --save-dev
+
+Sửa lại cấu hình scripts trong package.json
+"start": "webpack-dev-server --mode development --open --hot",
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------------
+3. CREATE REACT APP
+
+npx create-react-app <nameapp>
