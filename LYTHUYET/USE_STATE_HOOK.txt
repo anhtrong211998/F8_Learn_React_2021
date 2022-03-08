@@ -129,7 +129,7 @@ function App() {
 					
 					<input 
 						type="checkbox" 
-						checkbox = {checked === course.id}
+						checked = {checked === course.id}
 						onChange={() => handleCheck(course.id)}
 					/>
 					{course.name}
