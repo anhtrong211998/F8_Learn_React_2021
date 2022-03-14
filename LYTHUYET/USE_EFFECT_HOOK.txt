@@ -237,3 +237,43 @@ function Conten(){
 		
 	)
 }
+-----------------------------------------------------------
+3. CleanUp
+- Luôn được gọi trước khi component unmounted
+- Luôn dược gọi trước khi callback được gọi (trừ unmounted), tức là
+trước khi thực hiện lần callback mới thì sẽ dọn dẹp ca cũ
+	
+VD:
+import {useEffect, useState} from 'react';
+
+const tabs = ['posts','comments','albums']
+
+function Conten(){
+	const [avatar, setAvatar] = useState();
+	
+	useEffect(() => {
+		return () => {
+			avatar && URL.revokeObjectURL(file);
+		}
+	},[avatar])
+	
+	const handlePreviewAvatar = (e) => {
+		const file = e.target.file[0];
+		file.preview = URL.createObjectURL(file)
+		setAvatar(file);
+	}
+	
+	return (
+		<div>
+			<input
+				type="file"
+				onChange ={handlePreviewAvatar}
+			/>
+			
+			{avatar && (
+				<img src={avatar.preview} alt="" with="80%"
+			)}
+		</div>
+	)
+}
+	
